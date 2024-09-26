@@ -8,7 +8,7 @@ $project_name = "";
 $is_delete = $_GET['delete'] ?? 0;
 
 
-$all_sql = "SELECT * from PROJECTS";
+$all_sql = "SELECT * from PROJECTS ORDER BY ID DESC";
 $all_result = $db->query($all_sql);
 
 

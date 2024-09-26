@@ -19,7 +19,7 @@ $is_delete = $_GET['delete'] ?? 0;
 
 
 //select all projects
-$all_sql = "SELECT * from PROJECTS";
+$all_sql = "SELECT * from PROJECTS ORDER BY ID DESC";
 $all_result = $db->query($all_sql);
 
 //select todays tasks
@@ -31,7 +31,7 @@ $todayDate = date('Y-m-d');
 $task_sql = $db->prepare("SELECT TASKS.*, PROJECTS.NAME AS project_name 
                      FROM TASKS 
                      INNER JOIN PROJECTS ON TASKS.PROJECT_ID = PROJECTS.ID 
-                     WHERE DATE(TASKS.created_at) = :todayDate");
+                     WHERE DATE(TASKS.created_at) = :todayDate  ORDER BY TASKS.ID DESC");
 
 // Bind the parameter
 $task_sql->bindParam(':todayDate', $todayDate, SQLITE3_TEXT);
